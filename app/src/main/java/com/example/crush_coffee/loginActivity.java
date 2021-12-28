@@ -39,8 +39,6 @@ public class loginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);//activebar
-        //getSupportActionBar().setIcon(R.drawable.ic_baseline_shop_24);
         setContentView(R.layout.activity_login2);
         username=findViewById(R.id.etUsername);
         password=findViewById(R.id.etPassword);
@@ -67,7 +65,7 @@ public class loginActivity extends AppCompatActivity {
                 prog1.setVisibility(View.INVISIBLE);
                 login.setEnabled(true);
                 System.out.println(response.trim()=="error");
-                System.out.println(response.trim().compareTo("error"));
+                //System.out.println(response.trim().compareTo("error"));
                 if(response.trim().compareTo("error")!=0){
                    // Intent i= new Intent(loginActivity.this, MenuActivity.class);
 

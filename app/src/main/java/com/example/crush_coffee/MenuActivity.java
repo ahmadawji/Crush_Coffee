@@ -21,6 +21,7 @@ TextView tvCusName;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        //Receive intent sent from loginActivity
         Intent i = getIntent();
         Customer c= (Customer) i.getExtras().getSerializable("customer");
         tvCusName =(TextView) findViewById(R.id.tvCustomerName);
