@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".loginActivity"
+    android:orientation="vertical"
+    android:background="@drawable/wallpapercoffee"
+    android:gravity="center_horizontal">
+
+
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="200dp"
+        android:background="#8F9A5652"
+        android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:hint="Username" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#592824"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="#8F9A5652"
+        app:startIconDrawable="@drawable/ic_baseline_lock_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textColor="#000000"
+            android:hint="Password" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="#8F9A5652"
+        android:onClick="login"
+        android:text="Login" />
+
+    <ProgressBar
+        android:visibility="invisible"
+        android:id="@+id/prog1"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAdd" />
+
+
+</LinearLayout>
