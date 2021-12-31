@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -39,8 +40,6 @@ public class loginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);//activebar
-        //getSupportActionBar().setIcon(R.drawable.ic_baseline_shop_24);
         setContentView(R.layout.activity_login2);
         username=findViewById(R.id.etUsername);
         password=findViewById(R.id.etPassword);
@@ -80,6 +79,7 @@ public class loginActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(loginActivity.this,"Fail: "+ error.toString(), Toast.LENGTH_LONG).show();
+                System.out.println("Fail: "+ error.toString());
                 prog1.setVisibility(View.INVISIBLE);
                 login.setEnabled(true);
             }
@@ -94,6 +94,10 @@ public class loginActivity extends AppCompatActivity {
                 return params;
             }
         };
+
+       // request.setRetryPolicy(new DefaultRetryPolicy( 20000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+
 
         queue.add(request);
     }
