@@ -9,57 +9,27 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-public class MenuActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    ListView lvCat;
-    TextView tvCusName;
-    Customer c;
+public class Basket extends AppCompatActivity {
     DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
-        //Assign variable
-        drawerLayout=findViewById(R.id.drawer_layout);
-        try {
-            Intent i = getIntent();
-             c = (Customer) i.getExtras().getSerializable("customer");
-            tvCusName = (TextView) findViewById(R.id.tvCustomerName);
-            tvCusName.setText(c.getName());
-            Customer.loggedIn = true;
-        }catch(NullPointerException e){
-            Log.d("error:",e.toString());
-        }
-        lvCat=(ListView) findViewById(R.id.lvCategory);
-        ArrayAdapter a = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, Data_Category.category);
-        lvCat.setAdapter(a);
-        lvCat.setOnItemClickListener(this);
+        setContentView(R.layout.activity_basket);
 
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-        Intent i1 = new Intent(this, OrderDetails.class);
-        i1.putExtra("position",i);
-        i1.putExtra("customer", c);
-        startActivity(i1);
+        drawerLayout= findViewById(R.id.drawer_layout);
     }
 
     public void goToMenuActivity(View view){
-        recreate();
+        redirectActivity(this, MenuActivity.class);
     }
 
     public void goToBasket(View view){
-        redirectActivity(this, Basket.class);
+        //Recreate activity
+        recreate();
+        //Redirect activity to about us
+        MenuActivity.redirectActivity(this, Basket.class);
     }
 
     public void clickMenu(View view){
@@ -136,5 +106,4 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
         builder.show();
 
     }
-
 }
