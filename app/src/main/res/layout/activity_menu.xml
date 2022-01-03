@@ -58,7 +58,7 @@
             android:textSize="20sp"
             android:fontFamily="monospace"
             android:textColor="#6a040f"
-            android:text="Choose and Enjoy!" />
+            android:text="Choose, enjoy, and add to your basket :)" />
 
         <ListView
             android:id="@+id/lvCategory"

@@ -11,7 +11,12 @@ public class Customer implements Serializable {
     private String password;
     private LocalDate dateOfBirth;
     private String email;
+
+    //global variables
     public static Boolean loggedIn=false;
+    public static String USERNAME="";
+    public static String CUSTOMERNAME="";
+
 
     public Customer() { }
 

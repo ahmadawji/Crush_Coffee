@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Order {
+    private int id;
     private LocalDate order_date;
     private Boolean paid;
     private int quantity;
@@ -16,6 +17,12 @@ public class Order {
     private Category category;
     private Customer customer;
     private LocalTime orderTime;
+
+    public Order(int id, int quantity, Category category ){
+        this.id=id;
+        this.quantity=quantity;
+        this.category= category;
+    }
 
     public Order(LocalDate order_date, Boolean paid, int quantity, float price, String size, int sugar, String addOns, Category category, Customer customer) {
         this.order_date = order_date;
@@ -104,15 +111,8 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "order_date=" + order_date +
-                ", paid=" + paid +
-                ", quantity=" + quantity +
-                ", price=" + price +
-                ", size='" + size + '\'' +
-                ", sugar=" + sugar +
-                ", addOns='" + addOns + '\'' +
-                ", orderTime=" + orderTime +
-                '}';
+        if (quantity>1)
+        return  quantity +" "+this.category.getName()+"s";
+        return  quantity +" "+this.category.getName();
     }
 }

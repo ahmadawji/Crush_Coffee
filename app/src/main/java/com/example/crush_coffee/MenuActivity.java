@@ -31,11 +31,10 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
         //Assign variable
         drawerLayout=findViewById(R.id.drawer_layout);
         try {
-            Intent i = getIntent();
-             c = (Customer) i.getExtras().getSerializable("customer");
             tvCusName = (TextView) findViewById(R.id.tvCustomerName);
-            tvCusName.setText(c.getName());
+            tvCusName.setText(Customer.CUSTOMERNAME);
             Customer.loggedIn = true;
+
         }catch(NullPointerException e){
             Log.d("error:",e.toString());
         }

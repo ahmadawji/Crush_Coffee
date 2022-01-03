@@ -6,6 +6,7 @@ public class Category {
     private int image;
     private float price;
 
+    public Category(){}
 
     public Category(int id, String name, int image, float price) {
         this.id = id;
