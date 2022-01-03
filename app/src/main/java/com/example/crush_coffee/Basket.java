@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,9 +30,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Basket extends AppCompatActivity implements AdapterView.OnItemClickListener {
+    ArrayAdapter basketAdapter;
+    Button generateQR;
     DrawerLayout drawerLayout;
     ListView basketOrders;
-    ArrayAdapter basketAdapter;
     final String username =Customer.USERNAME;
     private ArrayList<Order>ordersInBasket= new ArrayList<>();
     @Override
@@ -41,14 +43,24 @@ public class Basket extends AppCompatActivity implements AdapterView.OnItemClick
 
         drawerLayout= findViewById(R.id.drawer_layout);
         basketOrders= (ListView) findViewById(R.id.lvBasketOrders);
+        generateQR = findViewById(R.id.btGenerateQR);
 
         basketAdapter= new ArrayAdapter(this,android.R.layout.simple_expandable_list_item_1, ordersInBasket);
         basketOrders.setAdapter(basketAdapter);
 
         basketOrders.setOnItemClickListener(this);
+        generateQR.setOnClickListener(showQr);
         getOrdersInBasket(username);
 
     }
+
+    View.OnClickListener showQr= new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent i = new Intent(Basket.this, QRcodeActivity.class);
+            startActivity(i);
+        }
+    };
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -57,7 +69,10 @@ public class Basket extends AppCompatActivity implements AdapterView.OnItemClick
 
     public void getOrdersInBasket(String username){
             final RequestQueue queue = Volley.newRequestQueue(this);
-            String URL= Coffee_API_URLs.ORDERSINBASKET+"?cun="+username;
+            //String URL= Coffee_API_URLs.ORDERSINBASKET+"?cun="+username;
+            System.out.println("Username: "+username);
+            System.out.println("URL: "+Coffee_API_URLs.ORDERSINBASKET+"?cun="+username);
+            String URL =Coffee_API_URLs.ORDERSINBASKET+"?cun="+username;
             JsonArrayRequest request = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {

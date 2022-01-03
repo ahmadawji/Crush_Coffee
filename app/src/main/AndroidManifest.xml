@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Crush_Coffee">
         <activity
+            android:name=".QRcodeActivity"
+            android:exported="true" />
+        <activity
             android:name=".Basket"
             android:exported="true" />
         <activity
