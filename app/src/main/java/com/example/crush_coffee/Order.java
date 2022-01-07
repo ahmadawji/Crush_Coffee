@@ -106,7 +106,7 @@ public class Order {
     }
 
     public String getUserName(){
-        return this.customer.getUsername();
+        return Customer.USERNAME;
     }
 
     @Override

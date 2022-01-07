@@ -51,7 +51,8 @@ public class QRcodeActivity extends AppCompatActivity {
 
         // setting this dimensions inside our qr code
         // encoder to generate our qr code.
-        qrgEncoder = new QRGEncoder("https://ahmedscompany.000webhostapp.com/coffee_shop/getNonPaidOrders.php?cun=johnny_depp", null, QRGContents.Type.TEXT, dimen);
+        String URL =Coffee_API_URLs.ORDERSINBASKET+"?cun="+Customer.USERNAME;
+        qrgEncoder = new QRGEncoder(URL, null, QRGContents.Type.TEXT, dimen);
         try {
             // getting our qrcode in the form of bitmap.
             bitmap = qrgEncoder.encodeAsBitmap();
