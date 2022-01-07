@@ -8,27 +8,76 @@
     android:id="@+id/drawer_layout"
     tools:context=".Basket">
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Basket"
-        android:background="@drawable/wallpapercoffee"
+        android:background="#A9FDFFB6"
         android:orientation="vertical"
         >
-    <include
-        layout="@layout/main_toolbar"/>
+        <include
+            layout="@layout/main_toolbar"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Basket"
-        tools:layout_editor_absoluteX="173dp"
-        tools:layout_editor_absoluteY="283dp"
-        android:textSize="30dp"
-        tools:ignore="MissingConstraints" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#6a040f"
+            android:paddingLeft="10dp"
+            >
+
+
+            <ImageView
+                android:layout_width="182dp"
+                android:layout_height="112dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/basketcustomer" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:paddingTop="30dp"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:textColor="#ffe169"
+                android:text="What's in your basket" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+
+               <ListView
+                   android:id="@+id/lvBasketOrders"
+                   android:layout_width="match_parent"
+                   android:layout_height="310dp" />
+           </LinearLayout>
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btGenerateQR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:text="Generate QR Code"
+            android:background="#6a040f"
+            android:textColor="#ffe169"
+            android:fontFamily="monospace"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            />
+
+
     </LinearLayout>
 
     <RelativeLayout

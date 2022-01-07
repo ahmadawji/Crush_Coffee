@@ -122,8 +122,11 @@ public class loginActivity extends AppCompatActivity {
                     c.setDateOfBirth(dob);
                     c.setEmail(email);
                     Toast.makeText(loginActivity.this, c.toString(), Toast.LENGTH_LONG).show();
-                    System.out.println("Hellloooo " +c.toString());
-                    menuIntent.putExtra("customer",c);
+                   // System.out.println("Hellloooo " +c.toString());
+                   // menuIntent.putExtra("customer",c);
+                    Customer.CUSTOMERNAME=c.getName();
+                    Customer.USERNAME=c.getUsername();
+
                     startActivity(menuIntent);
 
                 } catch (Exception ex) {
