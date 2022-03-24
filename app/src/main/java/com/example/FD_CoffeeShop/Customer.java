@@ -1,8 +1,7 @@
-package com.example.crush_coffee;
+package com.example.FD_CoffeeShop;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Customer implements Serializable {
     private String username;

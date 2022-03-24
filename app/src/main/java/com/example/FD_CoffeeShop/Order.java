@@ -1,9 +1,7 @@
-package com.example.crush_coffee;
+package com.example.FD_CoffeeShop;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.Locale;
 
 public class Order {
     private int id;

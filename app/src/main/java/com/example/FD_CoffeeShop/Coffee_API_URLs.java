@@ -1,4 +1,4 @@
-package com.example.crush_coffee;
+package com.example.FD_CoffeeShop;
 
 public class Coffee_API_URLs {
     public static final String LOGIN="https://ahmedscompany.000webhostapp.com/coffee_shop/logIn.php";

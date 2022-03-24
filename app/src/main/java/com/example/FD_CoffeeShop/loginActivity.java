@@ -1,4 +1,4 @@
-package com.example.crush_coffee;
+package com.example.FD_CoffeeShop;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +11,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,16 +23,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import java.text.SimpleDateFormat;
 
 public class loginActivity extends AppCompatActivity {
     EditText username;
     EditText password;
-    Button login;
+    Button login, createAcc;
     public ProgressBar prog1 ;
     Intent menuIntent ;
 
@@ -43,9 +39,17 @@ public class loginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login2);
         username=findViewById(R.id.etUsername);
         password=findViewById(R.id.etPassword);
-        login=findViewById(R.id.bt_login);
+        login=findViewById(R.id.btLogin);
+        createAcc=findViewById(R.id.btCreateAccount);
         prog1 = findViewById(R.id.prog1);
         menuIntent= new Intent(loginActivity.this, MenuActivity.class);
+
+        createAcc.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(loginActivity.this, Create_Account.class));
+            }
+        });
+
         if(Customer.loggedIn) {
             startActivity(menuIntent);//go to login activity
         }
@@ -89,7 +93,7 @@ public class loginActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("username",username.getText().toString());
-                params.put("password", password.getText().toString());
+                params.put("password", password.getText().toString().trim());
                 //params.put("key", "cuBubcDE");
                 return params;
             }
@@ -145,6 +149,6 @@ public class loginActivity extends AppCompatActivity {
     }
 
 
-
-
+    public void createAccount(View view) {
+    }
 }//loginActivity

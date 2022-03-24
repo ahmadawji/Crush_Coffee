@@ -1,4 +1,4 @@
-package com.example.crush_coffee;
+package com.example.FD_CoffeeShop;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OrderDetails extends AppCompatActivity {
-    Button addBasket, decrement;
+    Button addBasket;
     Customer c;
     CheckBox cocoa,caramel, vanilla;
     float priceOfItem;
@@ -61,7 +61,6 @@ public class OrderDetails extends AppCompatActivity {
         caramel=(CheckBox) findViewById(R.id.cbCaramel);
         vanilla=(CheckBox) findViewById(R.id.cbVanilla);
         addBasket=(Button) findViewById(R.id.btAddBasket);
-        decrement=(Button) findViewById(R.id.btDecrement);
         progOrdDet= (ProgressBar) findViewById(R.id.pbProg2);
 
         imageItem.setImageResource(Data_Category.category[index].getImage());
@@ -141,8 +140,8 @@ public class OrderDetails extends AppCompatActivity {
                 Toast.makeText(OrderDetails.this, response, Toast.LENGTH_LONG).show();
                 progOrdDet.setVisibility(View.INVISIBLE);
                 addBasket.setEnabled(true);
-                System.out.println(response.trim()=="error");
-                System.out.println(response.trim().compareTo("error"));
+                //System.out.println(response.trim()=="error");
+               // System.out.println(response.trim().compareTo("error"));
                 if(response.trim().compareTo("error")!=0){
                      Intent i= new Intent(OrderDetails.this, MenuActivity.class);
                      startActivity(i);
@@ -235,7 +234,19 @@ public class OrderDetails extends AppCompatActivity {
         else
             quantity--;
             value.setText(""+quantity);
+        //Our if condition here will prevent the priceOfItem to decrease under the product's original price and will prevent the price to turn negative on decrement
         if(priceOfItem>=Data_Category.category[index].getPrice()*2+addOnsCount) {
+            /*
+            Example of error:
+             if addOns were 3
+            * 4 >= 2*2+3
+            * 4 >= 7
+            * if I turned off 3 checkboxes and I clicked on the decrement button the value will turn negative
+            * If clicked on the decrement 4=4-2=2
+            * and if I turned off the checkboxes
+            * 2=2-3=-1 (Negative value which is invalid)
+            *
+            * */
             priceOfItem -= Data_Category.category[index].getPrice();
             priceOfProduct = String.valueOf(priceOfItem);
             priceOfProduct = "$" + priceOfProduct;

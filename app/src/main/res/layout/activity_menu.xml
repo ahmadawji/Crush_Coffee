@@ -1,50 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawer_layout"
+    android:background="#AE6A040F"
     tools:context=".MainActivity">
+
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MenuActivity"
         android:background="@drawable/wallpapercoffee"
         android:orientation="vertical"
-        >
-        <include
-            layout="@layout/main_toolbar"/>
+        tools:context=".MenuActivity">
+
+        <include layout="@layout/main_toolbar" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#006A040F"
             android:orientation="vertical"
-            android:background="#6a040f"
-            android:paddingLeft="10dp"
-            >
+            android:paddingLeft="10dp">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
-                android:paddingTop="30dp"
-                android:textSize="50sp"
-                android:textStyle="bold"
                 android:fontFamily="monospace"
-                android:textColor="#ffe169"
-                android:text="Welcome" />
+                android:paddingTop="30dp"
+                android:text="Welcome"
+                android:textColor="#A16A040F"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/tvCustomerName"
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:paddingTop="10dp"
-                android:textSize="40sp"
-                android:textStyle="bold"
+                android:layout_height="69dp"
                 android:fontFamily="monospace"
-                android:textColor="#ffe169"
-                />
+                android:paddingTop="10dp"
+                android:textColor="#9E6A040F"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -52,29 +50,31 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:textStyle="normal"
-            android:textAlignment="center"
-            android:textSize="20sp"
+            android:background="@drawable/rounded_corner"
             android:fontFamily="monospace"
-            android:textColor="#6a040f"
-            android:text="Choose, enjoy, and add to your basket :)" />
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="Choose, enjoy, and add to your basket :)"
+            android:textAlignment="center"
+            android:textColor="#ffe169"
+            android:textSize="20sp"
+            android:textStyle="normal" />
 
         <ListView
             android:id="@+id/lvCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:divider="@null" />
 
     </LinearLayout>
+
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@android:color/white">
 
-        <include
-            layout="@layout/main_nav_drawer"/>
+        <include layout="@layout/main_nav_drawer" />
 
     </RelativeLayout>
 

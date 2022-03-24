@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.crush_coffee">
+    package="com.example.FD_CoffeeShop">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,22 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Crush_Coffee">
         <activity
-            android:name=".QRcodeActivity"
+            android:name="com.example.FD_CoffeeShop.Create_Account"
             android:exported="true" />
         <activity
-            android:name=".Basket"
+            android:name="com.example.FD_CoffeeShop.QRcodeActivity"
             android:exported="true" />
         <activity
-            android:name=".OrderDetails"
+            android:name="com.example.FD_CoffeeShop.Basket"
             android:exported="true" />
         <activity
-            android:name=".MenuActivity"
+            android:name="com.example.FD_CoffeeShop.OrderDetails"
             android:exported="true" />
         <activity
-            android:name=".loginActivity"
+            android:name="com.example.FD_CoffeeShop.MenuActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.FD_CoffeeShop.loginActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.FD_CoffeeShop.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

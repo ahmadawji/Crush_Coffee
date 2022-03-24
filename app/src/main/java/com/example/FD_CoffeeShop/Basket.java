@@ -1,4 +1,4 @@
-package com.example.crush_coffee;
+package com.example.FD_CoffeeShop;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -27,7 +27,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Basket extends AppCompatActivity implements AdapterView.OnItemClickListener {
     ArrayAdapter basketAdapter;

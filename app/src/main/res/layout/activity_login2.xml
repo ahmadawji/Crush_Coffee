@@ -16,9 +16,9 @@
         android:layout_height="60dp"
         android:layout_marginTop="200dp"
         android:background="#8F9A5652"
+        android:paddingLeft="12dp"
         android:drawableLeft="@drawable/ic_baseline_person_24"
-        android:hint="Username" />
-
+        android:hint="   Username" />
 
     <com.google.android.material.textfield.TextInputLayout
         app:passwordToggleEnabled="true"
@@ -40,13 +40,23 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/bt_login"
+        android:id="@+id/btLogin"
         android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:background="#8F9A5652"
         android:onClick="login"
         android:text="Login" />
+    <Button
+        android:id="@+id/btCreateAccount"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="#8F9A5652"
+        android:onClick="createAccount"
+        android:text="Create Account" />
 
     <ProgressBar
         android:visibility="invisible"

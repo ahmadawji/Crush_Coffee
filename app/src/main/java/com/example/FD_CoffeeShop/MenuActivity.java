@@ -1,4 +1,4 @@
-package com.example.crush_coffee;
+package com.example.FD_CoffeeShop;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -15,9 +15,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 public class MenuActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     ListView lvCat;
@@ -39,8 +36,9 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
             Log.d("error:",e.toString());
         }
         lvCat=(ListView) findViewById(R.id.lvCategory);
-        ArrayAdapter a = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, Data_Category.category);
-        lvCat.setAdapter(a);
+        ProductAdapter pa = new ProductAdapter(this,R.layout.product_adapter_view, Data_Category.category);
+        //ArrayAdapter a = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, Data_Category.category);
+        lvCat.setAdapter(pa);
         lvCat.setOnItemClickListener(this);
 
     }

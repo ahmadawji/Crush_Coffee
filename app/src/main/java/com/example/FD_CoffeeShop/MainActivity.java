@@ -1,9 +1,8 @@
-package com.example.crush_coffee;
+package com.example.FD_CoffeeShop;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 
