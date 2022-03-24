@@ -2,7 +2,9 @@ package com.example.FD_CoffeeShop;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,27 +35,65 @@ public class loginActivity extends AppCompatActivity {
     public ProgressBar prog1 ;
     Intent menuIntent ;
 
+    //For Session management
+    public static final String SHARED_PREFS="FD_prefs";
+    public static final String USERNAME_KEY="username_key";
+    public static final String PASSWORD_KEY = "password_key";
+    // variable for shared preferences.
+    SharedPreferences sharedpreferences;
+    String userSess, passSess;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
+
+        // getting the data which is stored in shared preferences.
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+
+        // in shared prefs inside the string method
+        // we are passing key value as EMAIL_KEY and
+        // default value is
+        // set to null if not present.
+         userSess= sharedpreferences.getString(USERNAME_KEY, null);
+         passSess= sharedpreferences.getString(PASSWORD_KEY, null);
+
+
+
         username=findViewById(R.id.etUsername);
         password=findViewById(R.id.etPassword);
         login=findViewById(R.id.btLogin);
-        createAcc=findViewById(R.id.btCreateAccount);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(username.getText().toString().isEmpty() || password.getText().toString().isEmpty())
+                    Toast.makeText(loginActivity.this, "Please check if username or password are empty.", Toast.LENGTH_LONG).show();
+                else
+                login(v);
+            }
+        });
+
         prog1 = findViewById(R.id.prog1);
         menuIntent= new Intent(loginActivity.this, MenuActivity.class);
 
+        createAcc=findViewById(R.id.btCreateAccount);
         createAcc.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(loginActivity.this, Create_Account.class));
             }
         });
 
-        if(Customer.loggedIn) {
-            startActivity(menuIntent);//go to login activity
-        }
 
+    }
+
+    //If the user is already logged in and his credentials are stored
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (userSess != null && password != null) {
+            Intent i = new Intent(loginActivity.this, MenuActivity.class);
+            startActivity(i);
+        }
     }
 
     public void login(View view) {
@@ -72,7 +112,16 @@ public class loginActivity extends AppCompatActivity {
                 System.out.println(response.trim()=="error");
                 System.out.println(response.trim().compareTo("error"));
                 if(response.trim().compareTo("error")!=0){
-                   // Intent i= new Intent(loginActivity.this, MenuActivity.class);
+                    //On success we add the username and password to be in our session
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                    // below two lines will put values for
+                    // email and password in shared preferences.
+                    editor.putString(USERNAME_KEY, username.getText().toString());
+                    editor.putString(PASSWORD_KEY, password.getText().toString());
+
+                    // to save our data with key and value.
+                    editor.apply();
 
                     //if there is no errors it will takes us to the getCustomer method which retrieve all the customer's info and will redirect us to the 'MenuActivity'
                     getCustomer(username.getText().toString());
@@ -151,4 +200,5 @@ public class loginActivity extends AppCompatActivity {
 
     public void createAccount(View view) {
     }
+
 }//loginActivity

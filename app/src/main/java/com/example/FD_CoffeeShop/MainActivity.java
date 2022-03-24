@@ -16,13 +16,8 @@ public class MainActivity extends AppCompatActivity {
         h.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(Customer.loggedIn) {
-                    Intent i = new Intent(MainActivity.this, MenuActivity.class);
-                    startActivity(i);//go to login activity
-                }else{
-                    Intent i = new Intent(MainActivity.this, loginActivity.class);
-                    startActivity(i);//go to login activity
-                }
+                Intent i = new Intent(MainActivity.this, loginActivity.class);
+                startActivity(i);//go to login activity
             }
         },2000);//delay time
     }

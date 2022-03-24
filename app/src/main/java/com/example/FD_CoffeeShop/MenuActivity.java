@@ -6,8 +6,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,16 +23,28 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
     TextView tvCusName;
     Customer c;
     DrawerLayout drawerLayout;
+
+    //For Session management
+    public static final String SHARED_PREFS="FD_prefs";
+    public static final String USERNAME_KEY="username_key";
+    public static final String PASSWORD_KEY = "password_key";
+    // variable for shared preferences.
+    SharedPreferences sharedpreferences;
+    String userSess;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        sharedpreferences=getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+
         //Assign variable
         drawerLayout=findViewById(R.id.drawer_layout);
         try {
             tvCusName = (TextView) findViewById(R.id.tvCustomerName);
             tvCusName.setText(Customer.CUSTOMERNAME);
-            Customer.loggedIn = true;
 
         }catch(NullPointerException e){
             Log.d("error:",e.toString());
@@ -96,12 +110,22 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void clickLogout(View view){
+        // calling method to edit values in shared prefs.
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+
+        // below line will clear
+        // the data in shared prefs.
+        editor.clear();
+
+        // below line will apply empty
+        // data to shared prefs.
+        editor.apply();
         //Close app
         logout(this);
 
     }
 
-    public static void logout(Activity activity) {
+    public void logout(Activity activity) {
         //Initialize alert dialog
         //used to display the dialog message with OK and Cancel buttons
         AlertDialog.Builder builder=new AlertDialog.Builder(activity);
@@ -113,12 +137,11 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //Finish activity
-                activity.finishAffinity();
-                //Exit app
-                System.exit(0);
-
-
+                // starting mainactivity after
+                // clearing values in shared preferences.
+                Intent i = new Intent(MenuActivity.this, loginActivity.class);
+                startActivity(i);
+                finish();
             }
         });
         //Negative no button
