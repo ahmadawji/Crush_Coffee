@@ -26,11 +26,9 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
 
     //For Session management
     public static final String SHARED_PREFS="FD_prefs";
-    public static final String USERNAME_KEY="username_key";
-    public static final String PASSWORD_KEY = "password_key";
+
     // variable for shared preferences.
     SharedPreferences sharedpreferences;
-    String userSess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

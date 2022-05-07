@@ -39,6 +39,7 @@ public class loginActivity extends AppCompatActivity {
     public static final String SHARED_PREFS="FD_prefs";
     public static final String USERNAME_KEY="username_key";
     public static final String PASSWORD_KEY = "password_key";
+
     // variable for shared preferences.
     SharedPreferences sharedpreferences;
     String userSess, passSess;
@@ -90,7 +91,7 @@ public class loginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (userSess != null && password != null) {
+        if (userSess != null && passSess != null) {
             Intent i = new Intent(loginActivity.this, MenuActivity.class);
             startActivity(i);
         }
@@ -133,6 +134,7 @@ public class loginActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(loginActivity.this,"Fail: "+ error.toString(), Toast.LENGTH_LONG).show();
                 System.out.println("Fail: "+ error.toString());
+
                 prog1.setVisibility(View.INVISIBLE);
                 login.setEnabled(true);
             }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "902998745537",
+    "project_id": "faster-dequeue-83e3a",
+    "storage_bucket": "faster-dequeue-83e3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902998745537:android:cff46548956eea92178f40",
+        "android_client_info": {
+          "package_name": "com.FD_CoffeeShop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902998745537-4pabf14sm2ablc7immnag2al1l31c9oh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDspIL_gpSgqAZ_OgM_4jGPWuPRIhfnAvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902998745537-4pabf14sm2ablc7immnag2al1l31c9oh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
