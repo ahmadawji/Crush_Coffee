@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Getting token for firebase messaging as stated in documentation: 'https://firebase.google.com/docs/cloud-messaging/android/client?authuser=3'
+        //firebase of app: https://console.firebase.google.com/u/3/project/faster-dequeue-83e3a/notification/compose
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override

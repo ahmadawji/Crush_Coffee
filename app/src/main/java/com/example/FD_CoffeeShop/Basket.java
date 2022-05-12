@@ -53,6 +53,7 @@ public class Basket extends AppCompatActivity implements AdapterView.OnItemClick
 
     }
 
+    //click listener for generateQR button
     View.OnClickListener showQr= new View.OnClickListener() {
         @Override
         public void onClick(View v) {

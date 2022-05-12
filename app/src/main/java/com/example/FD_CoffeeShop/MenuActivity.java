@@ -25,10 +25,13 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
     DrawerLayout drawerLayout;
 
     //For Session management
-    public static final String SHARED_PREFS="FD_prefs";
+    public static final String SHARED_PREFS="FD_prefs", FIRSTNAME= "firstname";
 
     // variable for shared preferences.
     SharedPreferences sharedpreferences;
+
+    //Customer name getting from session
+    String customerName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +40,14 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_menu);
 
         sharedpreferences=getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        customerName= sharedpreferences.getString(FIRSTNAME, null);
 
         //Assign variable
         drawerLayout=findViewById(R.id.drawer_layout);
+
         try {
             tvCusName = (TextView) findViewById(R.id.tvCustomerName);
-            tvCusName.setText(Customer.CUSTOMERNAME);
+            tvCusName.setText(customerName);
 
         }catch(NullPointerException e){
             Log.d("error:",e.toString());

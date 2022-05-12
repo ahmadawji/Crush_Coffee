@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,10 +19,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.time.LocalDate;
@@ -37,12 +40,11 @@ public class loginActivity extends AppCompatActivity {
 
     //For Session management
     public static final String SHARED_PREFS="FD_prefs";
-    public static final String USERNAME_KEY="username_key";
-    public static final String PASSWORD_KEY = "password_key";
-
+    public static final String USERID_KEY="ID";
+    public static final String FIRSTNAME= "firstname";
     // variable for shared preferences.
     SharedPreferences sharedpreferences;
-    String userSess, passSess;
+    String userIdSess, firstnameSess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +58,8 @@ public class loginActivity extends AppCompatActivity {
         // we are passing key value as EMAIL_KEY and
         // default value is
         // set to null if not present.
-         userSess= sharedpreferences.getString(USERNAME_KEY, null);
-         passSess= sharedpreferences.getString(PASSWORD_KEY, null);
+         userIdSess= sharedpreferences.getString(USERID_KEY, null);
+         firstnameSess= sharedpreferences.getString(FIRSTNAME, null);
 
 
 
@@ -91,13 +93,13 @@ public class loginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (userSess != null && passSess != null) {
+        if (userIdSess != null && firstnameSess != null) {
             Intent i = new Intent(loginActivity.this, MenuActivity.class);
             startActivity(i);
         }
     }
 
-    public void login(View view) {
+   /* public void loginOld(View view) {
         final RequestQueue queue = Volley.newRequestQueue(this);
         String url = Coffee_API_URLs.LOGIN;
 
@@ -118,15 +120,14 @@ public class loginActivity extends AppCompatActivity {
 
                     // below two lines will put values for
                     // email and password in shared preferences.
-                    editor.putString(USERNAME_KEY, username.getText().toString());
-                    editor.putString(PASSWORD_KEY, password.getText().toString());
+//                    editor.putString(USERNAME_KEY, username.getText().toString());
+//                    editor.putString(PASSWORD_KEY, password.getText().toString());
+
 
                     // to save our data with key and value.
                     editor.apply();
 
                     //if there is no errors it will takes us to the getCustomer method which retrieve all the customer's info and will redirect us to the 'MenuActivity'
-                    getCustomer(username.getText().toString());
-
                 }
             }
         }, new Response.ErrorListener() {
@@ -155,9 +156,73 @@ public class loginActivity extends AppCompatActivity {
 
 
         queue.add(request);
+    }*/
+
+    public void login(View view) {
+        final RequestQueue queue = Volley.newRequestQueue(this);
+        String url = Coffee_API_URLs.LOGIN;
+
+        prog1.setVisibility(View.VISIBLE);
+        login.setEnabled(false);
+
+        JSONObject object = new JSONObject();
+        try {
+            //input your API parameters
+            object.put("email",username.getText().toString());
+            object.put("password",password.getText().toString().trim());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url,object, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Toast.makeText(loginActivity.this, response.toString(), Toast.LENGTH_LONG).show();
+                prog1.setVisibility(View.INVISIBLE);
+                login.setEnabled(true);
+                try{
+                    //Check if we get an error object
+                    if (response.toString().compareTo("{\"error\":\"Invalid credentials\"}")==0){
+                        System.out.println("Not allowed");
+                    }else{
+                        JSONObject user = response.getJSONObject("user");
+                        Log.d("login Activity","id: "+user.getString("id")+"fname: "+user.getString("fname"));
+
+
+                        //On success we add the username and password to be in our session
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                        // below two lines will put values for
+                        // userId and firstName in shared preferences.
+                        editor.putString(USERID_KEY, user.getString("id"));
+                        editor.putString(FIRSTNAME, user.getString("fname"));
+
+                        // to save our data with key and value.
+                        editor.apply();
+                        startActivity(menuIntent);
+                    }
+                }
+                catch (Exception ex){
+                    Toast.makeText(loginActivity.this, "error", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(loginActivity.this,"Fail: "+ error.toString(), Toast.LENGTH_LONG).show();
+                System.out.println("Fail: "+ error.toString());
+
+                prog1.setVisibility(View.INVISIBLE);
+                login.setEnabled(true);
+            }
+        });
+
+        queue.add(request);
     }
 
-    public void getCustomer(String username){
+   /* public void getCustomer(String username){
         final RequestQueue queue = Volley.newRequestQueue(this);
         String url = Coffee_API_URLs.GETCUSTOMER + "?username=" + username;
         Customer c = new Customer();
@@ -197,7 +262,7 @@ public class loginActivity extends AppCompatActivity {
         });
 
         queue.add(request);
-    }
+    }*/
 
 
     public void createAccount(View view) {
