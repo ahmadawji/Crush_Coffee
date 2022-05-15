@@ -11,28 +11,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Crush_Coffee">
-
-
         <activity
-            android:name="com.example.FD_CoffeeShop.Create_Account"
+            android:name=".Create_Account_Success"
             android:exported="true" />
         <activity
-            android:name="com.example.FD_CoffeeShop.QRcodeActivity"
+            android:name=".Create_Account"
             android:exported="true" />
         <activity
-            android:name="com.example.FD_CoffeeShop.Basket"
+            android:name=".QRcodeActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.FD_CoffeeShop.OrderDetails"
+            android:name=".Basket"
             android:exported="true" />
         <activity
-            android:name="com.example.FD_CoffeeShop.MenuActivity"
+            android:name=".OrderDetails"
             android:exported="true" />
         <activity
-            android:name="com.example.FD_CoffeeShop.loginActivity"
+            android:name=".MenuActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.FD_CoffeeShop.MainActivity"
+            android:name=".loginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,7 +49,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

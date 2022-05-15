@@ -42,6 +42,7 @@ public class loginActivity extends AppCompatActivity {
     public static final String SHARED_PREFS="FD_prefs";
     public static final String USERID_KEY="ID";
     public static final String FIRSTNAME= "firstname";
+
     // variable for shared preferences.
     SharedPreferences sharedpreferences;
     String userIdSess, firstnameSess;
