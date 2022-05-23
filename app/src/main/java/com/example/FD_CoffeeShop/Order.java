@@ -10,7 +10,7 @@ public class Order {
     private int quantity;
     private float price;
     private String size;
-    private int sugar;
+    private String sugar;
     private String addOns;
     private Category category;
     private Customer customer;
@@ -22,7 +22,7 @@ public class Order {
         this.category= category;
     }
 
-    public Order(LocalDate order_date, Boolean paid, int quantity, float price, String size, int sugar, String addOns, Category category, Customer customer) {
+    public Order(LocalDate order_date, Boolean paid, int quantity, float price, String size, String sugar, String addOns, Category category) {
         this.order_date = order_date;
         this.paid = paid;
         this.quantity = quantity;
@@ -31,7 +31,6 @@ public class Order {
         this.sugar = sugar;
         this.addOns = addOns;
         this.category = category;
-        this.customer = customer;
     }
 
     public LocalDate getOrder_date() {
@@ -74,11 +73,11 @@ public class Order {
         this.size = size;
     }
 
-    public int getSugar() {
+    public String getSugar() {
         return sugar;
     }
 
-    public void setSugar(int sugar) {
+    public void setSugar(String sugar) {
         this.sugar = sugar;
     }
 

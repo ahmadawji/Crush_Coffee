@@ -42,10 +42,12 @@ public class loginActivity extends AppCompatActivity {
     public static final String SHARED_PREFS="FD_prefs";
     public static final String USERID_KEY="ID";
     public static final String FIRSTNAME= "firstname";
+    public static final String BASKETID="basket_ID";
 
     // variable for shared preferences.
     SharedPreferences sharedpreferences;
-    String userIdSess, firstnameSess;
+    //To manage sessions
+    String userIdSess, firstnameSess, basketIDSess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,8 @@ public class loginActivity extends AppCompatActivity {
         // set to null if not present.
          userIdSess= sharedpreferences.getString(USERID_KEY, null);
          firstnameSess= sharedpreferences.getString(FIRSTNAME, null);
+         basketIDSess= sharedpreferences.getString(BASKETID, null);
+
 
 
 
@@ -179,7 +183,7 @@ public class loginActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(loginActivity.this, response.toString(), Toast.LENGTH_LONG).show();
+              //  Toast.makeText(loginActivity.this, response.toString(), Toast.LENGTH_LONG).show();
                 prog1.setVisibility(View.INVISIBLE);
                 login.setEnabled(true);
                 try{
@@ -190,6 +194,11 @@ public class loginActivity extends AppCompatActivity {
                         JSONObject user = response.getJSONObject("user");
                         Log.d("login Activity","id: "+user.getString("id")+"fname: "+user.getString("fname"));
 
+                        //Access the order object inside user to get the basket id
+                        JSONObject orderObject= user.getJSONArray("orders").getJSONObject(0);
+                        //Toast.makeText(loginActivity.this, "Basket ID: "+orderObject.getInt("id"), Toast.LENGTH_SHORT).show();
+
+
 
                         //On success we add the username and password to be in our session
                         SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -198,6 +207,8 @@ public class loginActivity extends AppCompatActivity {
                         // userId and firstName in shared preferences.
                         editor.putString(USERID_KEY, user.getString("id"));
                         editor.putString(FIRSTNAME, user.getString("fname"));
+                        editor.putString(BASKETID, String.valueOf(orderObject.getInt("id")));
+
 
                         // to save our data with key and value.
                         editor.apply();
@@ -265,8 +276,5 @@ public class loginActivity extends AppCompatActivity {
         queue.add(request);
     }*/
 
-
-    public void createAccount(View view) {
-    }
 
 }//loginActivity

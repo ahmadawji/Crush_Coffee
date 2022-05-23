@@ -37,7 +37,7 @@
             android:onClick="decrement"
             android:text="-"
             android:textColor="#FFF7F7"
-            android:textSize="16sp"
+            android:textSize="35dp"
             android:textStyle="bold" />
 
         <TextView
@@ -57,7 +57,7 @@
             android:onClick="increment"
             android:text="+"
             android:textColor="#FFF7F7"
-            android:textSize="16sp"
+            android:textSize="35dp"
             android:textStyle="bold" />
 
 
@@ -167,10 +167,10 @@
             android:textSize="20dp" />
 
         <CheckBox
-            android:id="@+id/cbCocoa"
+            android:id="@+id/cbCream"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Cocoa"
+            android:text="Cream"
             android:textSize="20dp" />
 
         <CheckBox
