@@ -7,12 +7,22 @@
     tools:context=".QRcodeActivity"
     android:gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
-    android:background="@drawable/wallpapercoffee"
+    android:background="@color/colorPrimary"
     >
     <ImageView
         android:id="@+id/ivQrcode"
         android:layout_width="350dp"
         android:layout_height="350dp"
         android:contentDescription="qr_code" />
+
+    <TextView
+        android:id="@+id/tvBasketID"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/white"
+        android:textColor="@color/colorPrimary"
+        android:textSize="40dp"
+        android:text="Basket ID" />
 
 </LinearLayout>

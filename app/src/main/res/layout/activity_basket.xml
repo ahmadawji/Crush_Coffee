@@ -6,12 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    tools:context=".Basket">
+    tools:context=".Basket"
+
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Basket"
-        android:background="#A9FDFFB6"
+        android:background="@color/background"
         android:orientation="vertical"
         >
         <include
@@ -21,29 +23,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#6a040f"
+            android:background="@drawable/rounded_corner_basket"
             android:paddingLeft="10dp"
+
             >
 
 
             <ImageView
-                android:layout_width="182dp"
-                android:layout_height="112dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/basketcustomer" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:paddingTop="30dp"
-                android:textSize="30sp"
+                android:layout_height="60dp"
+                android:paddingTop="10dp"
+                android:textSize="25dp"
                 android:textStyle="bold"
                 android:fontFamily="monospace"
-                android:textColor="#ffe169"
+                android:textColor="@color/white"
                 android:text="What's in your basket" />
 
         </LinearLayout>
+
+
+
+
 
         <ScrollView
             android:layout_width="match_parent"
@@ -51,31 +58,59 @@
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:orientation="vertical">
+               android:orientation="vertical"
+               >
 
                <ListView
-                   android:id="@+id/lvBasketOrders"
+                   android:id="@+id/lvBasketItems"
                    android:layout_width="match_parent"
-                   android:layout_height="310dp" />
+                   android:layout_height="340dp" />
            </LinearLayout>
 
         </ScrollView>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
         <Button
             android:id="@+id/btGenerateQR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:padding="10dp"
             android:gravity="center"
             android:text="Generate QR Code"
-            android:background="#6a040f"
-            android:textColor="#ffe169"
+            android:background="@drawable/custom_buttons_order"
+            android:textColor="@color/white"
             android:fontFamily="monospace"
-            android:textSize="16sp"
+            android:textSize="20dp"
             android:textStyle="bold"
+
             />
+
+            <Button
+                android:id="@+id/btClearBasket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="15dp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:text="Clear Basket"
+                android:background="@drawable/custom_buttons_order"
+                android:textColor="@color/white"
+                android:fontFamily="monospace"
+                android:textSize="15dp"
+                android:onClick="clearBasket"
+                />
+
+
+        </LinearLayout>
 
 
     </LinearLayout>

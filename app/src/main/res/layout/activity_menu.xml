@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/wallpapercoffee"
+        android:background="@color/background"
         android:orientation="vertical"
         tools:context=".MenuActivity">
 
@@ -30,7 +30,7 @@
                 android:fontFamily="monospace"
                 android:paddingTop="30dp"
                 android:text="Welcome"
-                android:textColor="#A16A040F"
+                android:textColor="@color/white"
                 android:textSize="40sp"
                 android:textStyle="bold" />
 
@@ -40,8 +40,8 @@
                 android:layout_height="69dp"
                 android:fontFamily="monospace"
                 android:paddingTop="10dp"
-                android:textColor="#9E6A040F"
-                android:textSize="30sp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="35sp"
                 android:textStyle="bold" />
 
 
@@ -56,7 +56,7 @@
             android:paddingBottom="15dp"
             android:text="Choose, enjoy, and add to your basket :)"
             android:textAlignment="center"
-            android:textColor="#ffe169"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="normal" />
 

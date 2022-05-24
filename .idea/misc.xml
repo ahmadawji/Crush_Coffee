@@ -26,16 +26,20 @@
         <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/Crush_Coffee/app/src/main/res/layout/product_adapter_view.xml" value="0.225" />
         <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/drawable/custom_button.xml" value="0.17135416666666667" />
         <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/drawable/custom_button_login.xml" value="0.24114583333333334" />
+        <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/drawable/custom_buttons_order.xml" value="0.2" />
         <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/drawable/ic_menu.xml" value="0.19479166666666667" />
         <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/drawable/rounded_corner.xml" value="0.24114583333333334" />
-        <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/layout/activity_basket.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/drawable/rounded_corner_basket.xml" value="0.196875" />
+        <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/layout/activity_basket.xml" value="0.2" />
         <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/layout/activity_create_account.xml" value="0.22" />
         <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/layout/activity_create_account_success.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/layout/activity_login2.xml" value="0.21" />
+        <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/layout/activity_main.xml" value="0.15416666666666667" />
         <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/layout/activity_menu.xml" value="0.225" />
         <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/layout/activity_order_details.xml" value="0.225" />
+        <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/layout/activity_qrcode.xml" value="0.225" />
         <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/layout/items_adapter_view.xml" value="0.225" />
         <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/layout/main_nav_drawer.xml" value="0.225" />
         <entry key="..\:/Users/Ahmad/Desktop/LIU/4th year/2nd semester/ISD/android/FD_CoffeeShop/app/src/main/res/layout/main_toolbar.xml" value="0.21" />

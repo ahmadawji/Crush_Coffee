@@ -104,6 +104,8 @@ public class loginActivity extends AppCompatActivity {
         }
     }
 
+
+    //old code
    /* public void loginOld(View view) {
         final RequestQueue queue = Volley.newRequestQueue(this);
         String url = Coffee_API_URLs.LOGIN;

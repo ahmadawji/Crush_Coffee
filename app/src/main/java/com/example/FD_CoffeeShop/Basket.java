@@ -6,8 +6,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,10 +19,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -29,27 +34,42 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class Basket extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    ArrayAdapter basketAdapter;
+    OrderItemAdapter basketAdapter;
     Button generateQR;
     DrawerLayout drawerLayout;
-    ListView basketOrders;
+    ListView basketItems;
     final String username =Customer.USERNAME;
-    private ArrayList<Order>ordersInBasket= new ArrayList<>();
+    private ArrayList<OrderItem>itemsInBasket= new ArrayList<>();
+
+    //For Session management
+    public static final String SHARED_PREFS="FD_prefs";
+    public static final String BASKETID="basket_ID";
+
+    // variable for shared preferences.
+    SharedPreferences sharedpreferences;
+    //To manage sessions
+    String basketIDSess;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basket);
 
+        // getting the data which is stored in shared preferences.
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        basketIDSess= sharedpreferences.getString(BASKETID, null);
+
         drawerLayout= findViewById(R.id.drawer_layout);
-        basketOrders= (ListView) findViewById(R.id.lvBasketOrders);
+        basketItems= (ListView) findViewById(R.id.lvBasketItems);
         generateQR = findViewById(R.id.btGenerateQR);
 
-        basketAdapter= new ArrayAdapter(this,android.R.layout.simple_expandable_list_item_1, ordersInBasket);
-        basketOrders.setAdapter(basketAdapter);
+        basketAdapter= new OrderItemAdapter(this, R.layout.items_adapter_view, itemsInBasket);
+        basketItems.setAdapter(basketAdapter);
 
-        basketOrders.setOnItemClickListener(this);
+        basketItems.setOnItemClickListener(this);
         generateQR.setOnClickListener(showQr);
-        getOrdersInBasket(username);
+        getOrdersInBasket(basketIDSess);
 
     }
 
@@ -67,42 +87,83 @@ public class Basket extends AppCompatActivity implements AdapterView.OnItemClick
         System.out.println("position "+position);
     }
 
-    public void getOrdersInBasket(String username){
-            final RequestQueue queue = Volley.newRequestQueue(this);
-            //String URL= Coffee_API_URLs.ORDERSINBASKET+"?cun="+username;
-            System.out.println("Username: "+username);
-            System.out.println("URL: "+Coffee_API_URLs.ORDERSINBASKET+"?cun="+username);
-            String URL =Coffee_API_URLs.ORDERSINBASKET+"?cun="+username;
-            JsonArrayRequest request = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
-                @Override
-                public void onResponse(JSONArray response) {
-                    try {
-                        for (int i = 0;i < response.length();i++) {
-                            JSONObject row = response.getJSONObject(i);
-                            int orderId = row.getInt("id");
-                            int quantity = row.getInt("quantity");
-                            int catId=row.getInt("category_id");
-                            ordersInBasket.add(new Order(orderId, quantity, Data_Category
-                            .category[catId-1]));
-                        }
+//    public void getOrdersInBasket(String basketId){
+//            final RequestQueue queue = Volley.newRequestQueue(this);
+//            //String URL= Coffee_API_URLs.ORDERSINBASKET+"?cun="+username;
+////            System.out.println("Username: "+username);
+//            System.out.println("URL: "+Coffee_API_URLs.ORDERSINBASKET+basketId);
+//            String URL =Coffee_API_URLs.ORDERSINBASKET+basketId;
+//            JsonArrayRequest request = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+//                @Override
+//                public void onResponse(JSONArray response) {
+//                    try {
+//                        for (int i = 0;i < response.length();i++) {
+//                            JSONObject row = response.getJSONObject(i);
+//                            int orderId = row.getInt("id");
+//                            int quantity = row.getInt("quantity");
+//                            int catId=row.getInt("category_id");
+//                           // itemsInBasket.add(new OrderItem(orderId, quantity, Data_Category.category[catId-1]));
+//                        }
+//
+//
+//                    } catch (Exception ex) {
+//                        Toast.makeText(Basket.this, "No records found", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    basketAdapter.notifyDataSetChanged();
+//                }
+//
+//            }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//                    Toast.makeText(Basket.this, "At fill: "+error.toString(), Toast.LENGTH_LONG).show();
+//                    Log.d("error", error.toString());
+//                }
+//            });
+//
+//            queue.add(request);
+//
+//    }
 
 
-                    } catch (Exception ex) {
-                        Toast.makeText(Basket.this, "No records found", Toast.LENGTH_SHORT).show();
+    public void getOrdersInBasket(String basketId){
+        final RequestQueue queue = Volley.newRequestQueue(this);
+        //String URL= Coffee_API_URLs.ORDERSINBASKET+"?cun="+username;
+        //System.out.println("Username: "+username);
+        System.out.println("URL: "+Coffee_API_URLs.ORDERSINBASKET+basketId);
+        String URL =Coffee_API_URLs.ORDERSINBASKET+basketId;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try{
+                    JSONArray itemsArray = response.getJSONArray("items");
+
+                    for (int i = 0;i < itemsArray.length();i++) {
+                            JSONObject row = itemsArray.getJSONObject(i);
+                            float price = (float) row.getInt("price");
+                            //System.out.println("price: "+price);
+                            String description = row.getString("description");
+                            int imageId=Data_Category.categoryImagesMap.get(String.valueOf(row.getInt("category_id"))).getImage();
+                            itemsInBasket.add(new OrderItem(price, imageId, description));
                     }
 
-                    basketAdapter.notifyDataSetChanged();
+                }catch (Exception e){
+                    Toast.makeText(Basket.this, "error: "+e, Toast.LENGTH_LONG).show();
                 }
 
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(Basket.this, "At fill: "+error.toString(), Toast.LENGTH_LONG).show();
-                    Log.d("error", error.toString());
-                }
-            });
+                basketAdapter.notifyDataSetChanged();
+            }
 
-            queue.add(request);
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Basket.this, "At fill: "+error.toString(), Toast.LENGTH_LONG).show();
+                Log.d("error", error.toString());
+            }
+        });
+
+        queue.add(request);
 
     }
 
@@ -198,5 +259,34 @@ public class Basket extends AppCompatActivity implements AdapterView.OnItemClick
         builder.show();
 
     }
+
+    public void clearBasket(View view) {
+        final RequestQueue queue = Volley.newRequestQueue(this);
+        String url = Coffee_API_URLs.DELETEFROMBASKET+basketIDSess;
+
+        StringRequest request = new StringRequest(Request.Method.DELETE, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(Basket.this, response, Toast.LENGTH_LONG).show();
+                System.out.println("delete: "+response);
+                if(response.compareTo("{\"message\":\"items deleted successfuly\"}")==0){
+                    itemsInBasket.clear();
+                    basketAdapter.notifyDataSetChanged();
+
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Basket.this,"Fail: "+ error.toString(), Toast.LENGTH_LONG).show();
+                System.out.println("Fail: "+ error.toString());
+
+            }
+        });
+
+        queue.add(request);
+    }
+
 
 }

@@ -6,12 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".OrderDetails"
     android:orientation="vertical"
-    android:background="#A9FDFFB6"
+    android:background="@color/background"
     >
-    <ImageView
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/roundCardView"
         android:layout_width="match_parent"
-        android:layout_height="203dp"
-        android:id="@+id/ivImageItem"/>
+        android:layout_height="240dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-25dp"
+        android:gravity="center"
+        app:cardCornerRadius="30dp">
+
+        <ImageView
+            android:id="@+id/ivImageItem"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/coffeecup" />
+    </androidx.cardview.widget.CardView>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,42 +39,54 @@
             android:layout_width="77dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="32dp"
             android:text="item"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            />
 
-        <Button
-            android:id="@+id/btDecrement"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="23dp"
-            android:background="#8F9A5652"
-            android:onClick="decrement"
-            android:text="-"
-            android:textColor="#FFF7F7"
-            android:textSize="35dp"
-            android:textStyle="bold" />
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="@drawable/custom_buttons_order"
+            >
 
-        <TextView
-            android:id="@+id/tvValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="35dp"
-            android:text="1"
-            android:textSize="45dp" />
+            <Button
+                android:id="@+id/btDecrement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#009A5652"
+                android:onClick="decrement"
+                android:padding="0dp"
+                android:text="-"
+                android:textColor="@color/colorPrimary"
+                android:textSize="35dp"
+                android:textStyle="bold" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
-            android:background="#8F9A5652"
-            android:onClick="increment"
-            android:text="+"
-            android:textColor="#FFF7F7"
-            android:textSize="35dp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvValue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2dp"
+                android:text="1"
+                android:textColor="@color/colorPrimary"
+                android:textSize="40dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:background="#009A5652"
+                android:onClick="increment"
+                android:text="+"
+                android:textColor="@color/colorPrimary"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
 
     </LinearLayout>
@@ -76,34 +104,56 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="5dp"
             android:text="Size"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            />
 
         <RadioGroup
             android:id="@+id/rgSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="30dp">
+            android:layout_marginLeft="30dp"
+
+            >
 
             <RadioButton
                 android:id="@+id/rbSmall"
                 android:layout_width="87dp"
                 android:layout_height="60dp"
-                android:text="small"
+                android:buttonTint="@color/white"
+                android:buttonTintMode="src_in"
                 android:checked="true"
+                android:text="small"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 />
 
             <RadioButton
                 android:id="@+id/rbMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="medium" />
+                android:text="medium"
+                android:buttonTint="@color/white"
+                android:buttonTintMode="src_in"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
 
             <RadioButton
                 android:id="@+id/rbLarge"
                 android:layout_width="128dp"
                 android:layout_height="match_parent"
-                android:text="large" />
+                android:text="large"
+                android:buttonTint="@color/white"
+                android:buttonTintMode="src_in"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
         </RadioGroup>
 
     </LinearLayout>
@@ -118,7 +168,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:text="Sugar"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            />
 
         <RadioGroup
             android:id="@+id/rgSugar"
@@ -135,19 +187,36 @@
                 android:layout_height="match_parent"
                 android:text="regular"
                 android:checked="true"
+                android:buttonTint="@color/white"
+                android:buttonTintMode="src_in"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 />
 
             <RadioButton
                 android:id="@+id/rbTwo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="double" />
+                android:text="double"
+                android:buttonTint="@color/white"
+                android:buttonTintMode="src_in"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
 
             <RadioButton
                 android:id="@+id/rbThree"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:text="triple" />
+                android:text="triple"
+                android:buttonTint="@color/white"
+                android:buttonTintMode="src_in"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
 
         </RadioGroup>
 
@@ -164,28 +233,45 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="13dp"
             android:text="AddOns: "
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            />
 
         <CheckBox
             android:id="@+id/cbCream"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Cream"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:buttonTint="@color/white"
+            android:buttonTintMode="src_in"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            />
 
         <CheckBox
             android:id="@+id/cbCaramel"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Caramel"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:buttonTint="@color/white"
+            android:buttonTintMode="src_in"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            />
 
         <CheckBox
             android:id="@+id/cbVanilla"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Vanilla"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:buttonTint="@color/white"
+            android:buttonTintMode="src_in"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            />
 
     </LinearLayout>
 
@@ -198,41 +284,52 @@
         android:layout_height="32dp"
         android:text="Price:"
         android:textSize="30dp"
-        android:layout_marginStart="13dp"/>
+        android:layout_marginStart="13dp"
+        android:textColor="@color/white"
+        />
     <TextView
         android:id="@+id/tvPrice"
         android:layout_width="match_parent"
         android:textAlignment="center"
-        android:textColor="#538d22"
+        android:textColor="@color/colorPrimary"
         android:layout_height="32dp"
         android:textStyle="bold"
         android:textSize="30dp"
-        android:layout_marginStart="13dp"/>
+        android:layout_marginStart="13dp"
+        />
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
     <Button
         android:id="@+id/btAddBasket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:padding="10dp"
         android:gravity="center"
         android:text="add to basket"
-        android:background="#8F9A5652"
+        android:background="@drawable/custom_button"
         android:textColor="#FFF7F7"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:layout_marginStart="40dp"
         />
 
-    <ProgressBar
-        android:id="@+id/pbProg2"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        />
+        <ProgressBar
+            android:id="@+id/pbProg2"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:visibility="invisible" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

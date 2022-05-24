@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="105dp"
-        android:background="#AE6A040F"
+        android:background="@color/colorPrimary"
         android:orientation="horizontal"
         tools:layout_editor_absoluteX="-16dp"
         android:paddingLeft="20dp"
@@ -16,20 +16,20 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/roundCardView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:elevation="0dp"
             android:gravity="center"
             android:layout_marginTop="30dp"
             app:cardCornerRadius="20dp">
+
             <ImageView
-                android:layout_gravity="center"
                 android:id="@+id/ivProduct"
-                android:layout_width="64dp"
-                android:layout_height="70dp"
-                app:srcCompat="@drawable/coffeebean"
-                />
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/coffeebean" />
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -40,8 +40,8 @@
             android:layout_marginTop="40dp"
             android:fontFamily="monospace"
             android:text="Product"
-            android:textColor="#ffe169"
-            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:textSize="30dp"
             android:textStyle="bold" />
 
     </LinearLayout>
