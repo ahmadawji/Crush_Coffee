@@ -43,16 +43,23 @@ public class loginActivity extends AppCompatActivity {
     public static final String USERID_KEY="ID";
     public static final String FIRSTNAME= "firstname";
     public static final String BASKETID="basket_ID";
+    public static String DEVICE_TOKEN="device_token";
 
     // variable for shared preferences.
     SharedPreferences sharedpreferences;
     //To manage sessions
-    String userIdSess, firstnameSess, basketIDSess;
+    String userIdSess, firstnameSess, basketIDSess, deviceToken;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
+
+
+
 
         // getting the data which is stored in shared preferences.
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
@@ -64,6 +71,9 @@ public class loginActivity extends AppCompatActivity {
          userIdSess= sharedpreferences.getString(USERID_KEY, null);
          firstnameSess= sharedpreferences.getString(FIRSTNAME, null);
          basketIDSess= sharedpreferences.getString(BASKETID, null);
+         deviceToken=sharedpreferences.getString(DEVICE_TOKEN,null);
+
+        Log.d("Login Activity: ", "Hello token: "+deviceToken);
 
 
 
@@ -177,6 +187,8 @@ public class loginActivity extends AppCompatActivity {
             //input your API parameters
             object.put("email",username.getText().toString());
             object.put("password",password.getText().toString().trim());
+            object.put("fcm_token", deviceToken);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -197,7 +209,7 @@ public class loginActivity extends AppCompatActivity {
                         Log.d("login Activity","id: "+user.getString("id")+"fname: "+user.getString("fname"));
 
                         //Access the order object inside user to get the basket id
-                        JSONObject orderObject= user.getJSONArray("orders").getJSONObject(0);
+                        JSONObject orderObject= user.getJSONArray("unpaid_orders").getJSONObject(0);
                         //Toast.makeText(loginActivity.this, "Basket ID: "+orderObject.getInt("id"), Toast.LENGTH_SHORT).show();
 
 

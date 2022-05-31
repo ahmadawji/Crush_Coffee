@@ -13,9 +13,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CRUSH-COFFEE"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:text="Powered by FasterDequeue"
+        android:textSize="15sp"
         android:textAlignment="center"
         android:textColor="#9E3B1C"/>
     <View
